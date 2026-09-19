@@ -1,5 +1,9 @@
-from fastapi import FastAPI
-from app.db.session import check_database_connection
+from fastapi import Depends, FastAPI
+from sqlalchemy.orm import Session
+
+from app.db.session import check_database_connection, get_db
+from app.repositories.country_repository import get_all_countries
+from app.schemas.country import CountryResponse
 
 app = FastAPI(
     title="DogDex API",
@@ -30,3 +34,7 @@ def database_health_check():
         "status": "Database connection is healthy",
         "database": database_name
     }
+
+@app.get("/countries", response_model=list[CountryResponse])
+def get_countries(db: Session = Depends(get_db)):
+    return get_all_countries(db)
