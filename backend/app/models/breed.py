@@ -13,9 +13,12 @@ from sqlalchemy import (
     func,
 )
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import Base
+from app.models.country import Country
+from app.models.breed_group import BreedGroup
+from app.models.coat_type import CoatType
 
 
 class Breed(Base):
@@ -48,6 +51,16 @@ class Breed(Base):
     group_id: Mapped[int] = mapped_column(
         ForeignKey("breed_group.id"),
         nullable=False,
+    )
+
+    # Relaciones con los catálogos
+    country: Mapped[Country] = relationship("Country")
+
+    group: Mapped[BreedGroup] = relationship("BreedGroup")
+
+    coat_types: Mapped[list[CoatType]] = relationship(
+        "CoatType",
+        secondary="breed_coat_type",
     )
 
     # Características físicas
