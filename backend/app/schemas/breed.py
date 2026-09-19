@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import Optional
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, field_validator
+from pydantic import BaseModel, ConfigDict, computed_field, field_validator
 
 class CountryInfo(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -17,6 +17,15 @@ class BreedGroupInfo(BaseModel):
     id: int
     name: str
 
+class BreedImageInfo(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    image_url: str
+    source_url: Optional[str] = None
+    author: Optional[str] = None
+    license: Optional[str] = None
+    alt_text: str
+
 class BreedResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
@@ -29,6 +38,7 @@ class BreedResponse(BaseModel):
     country: CountryInfo
     group: BreedGroupInfo
     coat_types: list[str]
+    images: list[BreedImageInfo] = []
 
     male_height_min_cm: Optional[float] = None
     male_height_max_cm: Optional[float] = None
@@ -55,6 +65,14 @@ class BreedResponse(BaseModel):
     @classmethod
     def convert_coat_types(cls, value):
         return sorted(coat.name for coat in value)
+
+    
+    @computed_field
+    @property
+    def primary_image(self) -> Optional[BreedImageInfo]:
+        # Por ahora cada raza tiene una sola imagen.
+        # La primera será su imagen principal.
+        return self.images[0] if self.images else None
 
     
 class BreedListResponse(BaseModel):

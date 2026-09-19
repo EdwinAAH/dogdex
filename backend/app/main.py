@@ -9,11 +9,24 @@ from app.schemas.breed import BreedResponse, BreedListResponse
 from fastapi import HTTPException, Query
 from app.repositories.breed_repository import get_breed_by_slug
 from typing import Optional
+from pathlib import Path
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI(
     title="DogDex API",
     description="API para explorar y comparar razas de perros",
     version="0.1.0",
+)
+
+
+# Directorio raíz del backend
+BACKEND_DIR = Path(__file__).resolve().parent.parent
+
+# Permitir que FastAPI sirva las fotografías
+app.mount(
+    "/static",
+    StaticFiles(directory=BACKEND_DIR / "static"),
+    name="static",
 )
 
 

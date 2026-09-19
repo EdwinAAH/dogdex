@@ -21,6 +21,7 @@ def get_all_breeds(
             selectinload(Breed.country),
             selectinload(Breed.group),
             selectinload(Breed.coat_types),
+            selectinload(Breed.images),
         )
     )
 
@@ -78,6 +79,7 @@ def get_breed_by_slug(db: Session, slug: str):
             selectinload(Breed.country),
             selectinload(Breed.group),
             selectinload(Breed.coat_types),
+            selectinload(Breed.images),
         )
         .where(Breed.slug == slug)
     )

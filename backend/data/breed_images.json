@@ -1,0 +1,39 @@
+
+[
+  {
+    "breed_slug": "pastor-aleman",
+    "image_url": "/static/images/breeds/pastor-aleman.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:German-shepherd-4055031920.jpg",
+    "author": "Hans Kemperman",
+    "license": "CC0",
+    "alt_text": "Pastor alemán de pie sobre el césped, visto de perfil",
+    "is_primary": true
+  },
+  {
+    "breed_slug": "akita",
+    "image_url": "/static/images/breeds/akita.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:AkitaDog-2366239_1920.jpg",
+    "author": "jupigo",
+    "license": "CC0",
+    "alt_text": "Akita japonés de pie, visto de perfil",
+    "is_primary": true
+  },
+  {
+    "breed_slug": "chihuahua",
+    "image_url": "/static/images/breeds/chihuahua.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Standard_razza_chihuahua.jpg",
+    "author": "Caterinarufo",
+    "license": "Public domain",
+    "alt_text": "Chihuahua de pelo corto y color claro, de pie sobre el césped",
+    "is_primary": true
+  },
+  {
+    "breed_slug": "shiba-inu",
+    "image_url": "/static/images/breeds/shiba-inu.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Shiba_Inu.jpg",
+    "author": "Yozakura",
+    "license": "Public domain",
+    "alt_text": "Shiba inu de pie entre el césped, con arnés rojo",
+    "is_primary": true
+  }
+]

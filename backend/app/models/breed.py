@@ -19,6 +19,7 @@ from app.models.base import Base
 from app.models.country import Country
 from app.models.breed_group import BreedGroup
 from app.models.coat_type import CoatType
+from app.models.breed_image import BreedImage
 
 
 class Breed(Base):
@@ -61,6 +62,10 @@ class Breed(Base):
     coat_types: Mapped[list[CoatType]] = relationship(
         "CoatType",
         secondary="breed_coat_type",
+    )
+
+    images: Mapped[list[BreedImage]] = relationship(
+        "BreedImage",
     )
 
     # Características físicas
