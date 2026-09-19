@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from app.db.session import check_database_connection
 
 app = FastAPI(
     title="DogDex API",
@@ -19,4 +20,13 @@ def root():
 def health_check():
     return {
         "status": "ok"
+    }
+
+@app.get("/health/db")
+def database_health_check():
+    database_name = check_database_connection()
+
+    return {
+        "status": "Database connection is healthy",
+        "database": database_name
     }
