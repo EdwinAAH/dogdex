@@ -1,10 +1,8 @@
+import "./App.css";
+import BreedListPage from "./pages/breedListPage";
+
 function App() {
-  return (
-    <main>
-      <h1>🐕 DogDex</h1>
-      <p>Explora el mundo de las razas caninas.</p>
-    </main>
-  );
+  return <BreedListPage />;
 }
 
 export default App;
