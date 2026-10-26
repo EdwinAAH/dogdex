@@ -1,20 +1,16 @@
-# macOS
-.DS_Store
-
 # Python
-__pycache__/
-*.py[cod]
 .venv/
-venv/
-.env
+__pycache__/
+*.pyc
 
-# Node
+# Variables de entorno
+.env
+.env.*
+!.env.example
+
+# Node.js
 node_modules/
 dist/
 
-# IDE
-.vscode/
-.idea/
-
-# Logs
-*.log
+# Archivos del sistema
+.DS_Store
