@@ -11,11 +11,24 @@ from app.repositories.breed_repository import get_breed_by_slug
 from typing import Optional
 from pathlib import Path
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
     title="DogDex API",
     description="API para explorar y comparar razas de perros",
     version="0.1.0",
+)
+
+# CORS - Permitir comunicación con el frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
+    allow_credentials=False,
+    allow_methods=["GET"],
+    allow_headers=["*"],
 )
 
 
