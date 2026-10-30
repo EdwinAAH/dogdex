@@ -1,16 +1,22 @@
+/* Tarjeta */
+
 .breed-card {
   background-color: #f8f5e9;
   border: 3px solid #252525;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 5px 5px 0 #252525;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .breed-card:hover {
   transform: translateY(-5px);
   box-shadow: 5px 10px 0 #252525;
 }
+
+/* Contenedor del sprite */
 
 .breed-card__image {
   display: flex;
@@ -21,12 +27,41 @@
   border-bottom: 3px solid #252525;
 }
 
-.breed-card__image img {
-  width: 140px;
-  height: 140px;
-  object-fit: contain;
+/* Sprite */
+
+.breed-card__sprite {
+  width: 128px;
+  height: 128px;
+
+  background-image: var(--sprite-url);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
   image-rendering: pixelated;
 }
+
+/* Animación al pasar el cursor */
+
+.breed-card:hover .breed-card__sprite--animated {
+  background-image: var(--animation-url);
+  background-size: 384px 128px;
+  background-position: 0 0;
+
+  animation: breedWag 0.45s steps(3) infinite;
+}
+
+@keyframes breedWag {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: -384px 0;
+  }
+}
+
+/* Información */
 
 .breed-card__info {
   padding: 16px;
@@ -42,4 +77,19 @@
   margin: 6px 0;
   color: #444;
   font-size: 0.95rem;
+}
+
+/* Accesibilidad */
+
+@media (prefers-reduced-motion: reduce) {
+  .breed-card {
+    transition: none;
+  }
+
+  .breed-card:hover .breed-card__sprite--animated {
+    animation: none;
+    background-image: var(--sprite-url);
+    background-size: contain;
+    background-position: center;
+  }
 }
